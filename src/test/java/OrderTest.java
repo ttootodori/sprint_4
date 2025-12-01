@@ -71,11 +71,9 @@ public class OrderTest extends BaseTest {
         orderPage.waitForLoadSecondPage();
         orderPage.fillSecondPage(date, period, color, comment);
 
-        //подтверждение заказа
-        orderPage.confirmOrder();
-
-        //проверка успешного создания заказа
-        boolean isSuccess = orderPage.isOrderSuccess();
-        assertTrue("Заказ должен быть успешно создан", isSuccess);
+        orderPage.clickYesButton();
+        boolean isSuccess = orderPage.isSuccessMessageVisible();
+        assertTrue("Должно появиться сообщение об оформлении заказа", isSuccess);
     }
+
 }

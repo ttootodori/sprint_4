@@ -26,7 +26,7 @@ public class OrderPage {
     private final By commentField = By.xpath(".//input[@placeholder='Комментарий для курьера']");
     private final By orderButton = By.xpath(".//button[text()='Заказать' and @class='Button_Button__ra12g Button_Middle__1CSJM']");
     private final By confirmButton = By.xpath(".//button[text()='Да' and @class='Button_Button__ra12g Button_Middle__1CSJM']");
-    private final By successMessage = By.className("Order_ModalHeader__3FDaJ");
+    private final By successMessage = By.xpath(".//div[contains(text(), 'Заказ оформлен')]");
 
     public OrderPage(WebDriver driver, BaseTest baseTest) {
         this.driver = driver;
@@ -76,15 +76,12 @@ public class OrderPage {
         clickWithScroll(orderButton);
     }
 
-    public void confirmOrder() {
-        new WebDriverWait(driver, 5)
-                .until(ExpectedConditions.visibilityOfElementLocated(confirmButton));
-        driver.findElement(confirmButton).click();
+    public void clickYesButton() {
+        WebElement button = driver.findElement(confirmButton);
+        button.click();
     }
 
-    public boolean isOrderSuccess() {
-        new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.visibilityOfElementLocated(successMessage));
+    public boolean isSuccessMessageVisible() {
         return driver.findElement(successMessage).isDisplayed();
     }
 
