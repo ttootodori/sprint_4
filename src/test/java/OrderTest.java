@@ -76,4 +76,5 @@ public class OrderTest extends BaseTest {
         assertTrue("Должно появиться сообщение об оформлении заказа", isSuccess);
     }
 
+
 }
